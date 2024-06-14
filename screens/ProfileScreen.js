@@ -103,6 +103,7 @@ const ProfileScreen = () => {
   console.log('orders', orders);
   return (
     <ScrollView
+      showsVerticalScrollIndicator={false}
       style={{
         padding: 10,
         flex: 1,
@@ -176,7 +177,7 @@ const ProfileScreen = () => {
         </Pressable>
       </View>
 
-      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+      <ScrollView showsVerticalScrollIndicator={false}>
         {loading ? (
           <Text>Loading...</Text>
         ) : orders.length > 0 ? (
@@ -184,23 +185,61 @@ const ProfileScreen = () => {
             <Pressable
               style={{
                 marginTop: 20,
-                padding: 15,
+                padding: 10,
                 borderRadius: 8,
                 borderWidth: 1,
                 borderColor: '#d0d0d0',
-                marginHorizontal: 10,
-                justifyContent: 'center',
-                alignItems: 'center',
+                // justifyContent: 'center',
+                // alignItems: 'center',
               }}
               key={order._id}
             >
               {/* Render the order information here */}
-              {order.products.slice(0, 1)?.map((product) => (
-                <View style={{ marginVertical: 10 }} key={product._id}>
-                  <Image
-                    source={{ uri: product.image }}
-                    style={{ width: 100, height: 100, resizeMode: 'contain' }}
-                  />
+              {order.products?.map((product) => (
+                <View
+                  style={{ marginVertical: 10, flexDirection: 'row', gap: 15 }}
+                  key={product._id}
+                >
+                  <View>
+                    <Image
+                      source={{ uri: product.image }}
+                      style={{ width: 100, height: 100, resizeMode: 'contain' }}
+                    />
+                  </View>
+                  <View>
+                    <Text
+                      style={{
+                        marginRight: 110,
+                        fontSize: 14,
+                        fontWeight: '600',
+                        textAlign: 'justify',
+                      }}
+                    >
+                      {product.name}
+                    </Text>
+                    <Text
+                      style={{
+                        fontSize: 14,
+                        fontWeight: '600',
+                      }}
+                    >
+                      Quantity:
+                      <Text style={{ color: 'maroon', fontSize: 18 }}>
+                        {' ' + product.quantity}
+                      </Text>
+                    </Text>
+                    <Text
+                      style={{
+                        fontSize: 14,
+                        fontWeight: '600',
+                      }}
+                    >
+                      Price: ₹
+                      <Text style={{ color: 'darkgreen', fontSize: 18 }}>
+                        {product.price}
+                      </Text>
+                    </Text>
+                  </View>
                 </View>
               ))}
             </Pressable>

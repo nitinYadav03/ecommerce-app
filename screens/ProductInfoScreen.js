@@ -43,7 +43,6 @@ const ProductInfoScreen = () => {
         flex: 1,
         backgroundColor: '#8eddda',
         marginBottom: ios ? -35 : 0,
-        paddingTop: Platform.OS == 'android' ? StatusBar.currentHeight : 0,
       }}
     >
       <StatusBar barStyle="dark-content" backgroundColor="#8eddda" />

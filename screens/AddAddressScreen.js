@@ -47,7 +47,7 @@ const AddAddressScreen = () => {
   console.log("addresses", addresses);
   const ios = Platform.OS === 'ios'
   return (
-    <SafeAreaView style={{backgroundColor: "#8eddda", flex: 1, marginBottom: ios ? -35 : 0, paddingTop: Platform.OS == 'android' ? StatusBar.currentHeight : 0}}>
+    <SafeAreaView style={{backgroundColor: "#8eddda", flex: 1, marginBottom: ios ? -35 : 0}}>
         <SearchBar />
       <ScrollView
         showsVerticalScrollIndicator={false}

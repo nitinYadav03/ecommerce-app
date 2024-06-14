@@ -257,7 +257,7 @@ const HomeScreen = () => {
   const navigation = useNavigation();
   return (
     <>
-      <SafeAreaView style={{ flex: 1, backgroundColor: '#8eddda', paddingTop: Platform.OS == 'android' ? StatusBar.currentHeight : 0 }}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: '#8eddda' }}>
         <StatusBar barStyle="dark-content" backgroundColor="#8eddda" />
         {/* Search bar */}
         <SearchBar />
@@ -281,8 +281,8 @@ const HomeScreen = () => {
                   Deliver to {selectedAddress?.name} - {selectedAddress?.street}
                 </Text>
               ) : (
-                <Text style={{ fontSize: 13, fontWeight: "500" }}>
-                    Add a Address
+                <Text style={{ fontSize: 13, fontWeight: '500' }}>
+                  Add a Address
                 </Text>
               )}
               <MaterialIcons

@@ -75,7 +75,6 @@ const AddressScreen = () => {
       style={{
         backgroundColor: '#8eddda',
         marginBottom: ios ? -35 : 0,
-        paddingTop: Platform.OS == 'android' ? StatusBar.currentHeight : 0,
       }}
     >
       <KeyboardAvoidingView
