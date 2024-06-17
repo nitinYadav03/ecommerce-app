@@ -7,6 +7,7 @@ import {
   Pressable,
   Platform,
   StatusBar,
+  ActivityIndicator,
 } from 'react-native';
 import React, { useLayoutEffect, useEffect, useContext, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
@@ -64,7 +65,7 @@ const ProfileScreen = () => {
     const fetchUserProfile = async () => {
       try {
         const response = await axios.get(
-          `http://192.168.2.50:8000/profile/${userId}`
+          `http://192.168.2.60:8000/profile/${userId}`
         );
         const { user } = response.data;
         setUser(user);
@@ -87,12 +88,11 @@ const ProfileScreen = () => {
     const fetchOrders = async () => {
       try {
         const response = await axios.get(
-          `http://192.168.2.50:8000/orders/${userId}`
+          `http://192.168.2.60:8000/orders/${userId}`
         );
         const orders = response.data.orders;
-        setOrders(orders);
-
         setLoading(false);
+        setOrders(orders);
       } catch (error) {
         console.log('error', error);
       }
@@ -179,7 +179,7 @@ const ProfileScreen = () => {
 
       <ScrollView showsVerticalScrollIndicator={false}>
         {loading ? (
-          <Text>Loading...</Text>
+          <ActivityIndicator size={70} color="#8eddda" />
         ) : orders.length > 0 ? (
           orders.map((order) => (
             <Pressable
@@ -245,7 +245,7 @@ const ProfileScreen = () => {
             </Pressable>
           ))
         ) : (
-          <Text>No orders found</Text>
+          <Text classMane="text-md ">No orders found</Text>
         )}
       </ScrollView>
     </ScrollView>

@@ -23,7 +23,7 @@ mongoose
     console.log('Error connecting to mongoDB ', error);
   });
 app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
+  console.log(`Server is running at http://192.168.2.60:${port}`);
 });
 
 const User = require('./models/user');
@@ -45,7 +45,7 @@ const sendVerificationEmail = async (email, verificationToken) => {
     from: 'amazon.com',
     to: email,
     subject: 'Email Verification',
-    text: `Please click the following link to verify your email: http://localhost/verify/${verificationToken}`,
+    text: `Please click the following link to verify your email: http://192.168.2.60/verify/${verificationToken}`,
   };
 
   // Send the email
