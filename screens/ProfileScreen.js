@@ -65,7 +65,7 @@ const ProfileScreen = () => {
     const fetchUserProfile = async () => {
       try {
         const response = await axios.get(
-          `http://192.168.2.60:8000/profile/${userId}`
+          `https://ecommerce-app-5l1q.onrender.com/profile/${userId}`
         );
         const { user } = response.data;
         setUser(user);
@@ -88,13 +88,14 @@ const ProfileScreen = () => {
     const fetchOrders = async () => {
       try {
         const response = await axios.get(
-          `http://192.168.2.60:8000/orders/${userId}`
+          `https://ecommerce-app-5l1q.onrender.com/orders/${userId}`
         );
         const orders = response.data.orders;
         setLoading(false);
         setOrders(orders);
       } catch (error) {
-        console.log('error', error);
+        console.log('error', error?.response?.data?.message);
+        setLoading(false);
       }
     };
 
@@ -245,7 +246,7 @@ const ProfileScreen = () => {
             </Pressable>
           ))
         ) : (
-          <Text classMane="text-md ">No orders found</Text>
+          <Text style={{textAlign: 'center', fontSize: 16, alignItems: 'center', justifyContent: 'center'}}>No orders found</Text>
         )}
       </ScrollView>
     </ScrollView>

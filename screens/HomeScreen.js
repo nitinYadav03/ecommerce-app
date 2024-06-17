@@ -243,7 +243,7 @@ const HomeScreen = () => {
   const fetchAddresses = async () => {
     try {
       const response = await axios.get(
-        `http://192.168.2.60:8000/addresses/${userId}`
+        `https://ecommerce-app-5l1q.onrender.com/addresses/${userId}`
       );
       const { addresses } = response.data;
 

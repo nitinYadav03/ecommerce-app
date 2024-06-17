@@ -15,14 +15,18 @@ import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 import { Feather } from '@expo/vector-icons';
+import { useDispatch, useSelector } from 'react-redux';
+import { cleanCart } from '../redux/cartReducer';
 
 const ios = Platform.OS == 'ios';
 const RegisterScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
-  const [hidden, setHidden] = useState(true)
+  const [hidden, setHidden] = useState(true);
   const navigation = useNavigation();
+  const cart = useSelector((state) => state.cart.cart);
+  const dispatch = useDispatch();
 
   const handleRegister = () => {
     const user = {
@@ -33,7 +37,7 @@ const RegisterScreen = () => {
 
     // send a POST  request to the backend API to register the user
     axios
-      .post('http://192.168.2.60:8000/register', user)
+      .post('https://ecommerce-app-5l1q.onrender.com/register', user)
       .then((response) => {
         Alert.alert(
           'Registration successful',
@@ -42,6 +46,7 @@ const RegisterScreen = () => {
         setName('');
         setEmail('');
         setPassword('');
+        dispatch(cleanCart());
       })
       .catch((error) => {
         Alert.alert(
@@ -114,9 +119,21 @@ const RegisterScreen = () => {
                   width={'90%'}
                 />
                 {hidden ? (
-                  <Feather onPress={()=>setHidden(!hidden)} suppressHighlighting name="eye-off" size={24} color="gray" />
+                  <Feather
+                    onPress={() => setHidden(!hidden)}
+                    suppressHighlighting
+                    name="eye-off"
+                    size={24}
+                    color="gray"
+                  />
                 ) : (
-                  <Feather onPress={()=>setHidden(!hidden)} suppressHighlighting name="eye" size={24} color="black" />
+                  <Feather
+                    onPress={() => setHidden(!hidden)}
+                    suppressHighlighting
+                    name="eye"
+                    size={24}
+                    color="black"
+                  />
                 )}
               </View>
             </View>

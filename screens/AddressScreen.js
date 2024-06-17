@@ -50,7 +50,7 @@ const AddressScreen = () => {
     };
 
     axios
-      .post('http://192.168.2.60:8000/addresses', { userId, address })
+      .post('https://ecommerce-app-5l1q.onrender.com/addresses', { userId, address })
       .then((response) => {
         Alert.alert('Success', 'Addresses added successfully');
         setName('');
